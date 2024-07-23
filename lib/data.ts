@@ -1,14 +1,10 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
-import { FaReact } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
-import corpcommentImg from "@/public/images/TaskEvaluation.png";
-import texgame from "@/public/images/texgame.png";
+import TaskEvaluation from "@/public/images/taskevaluation.png";
+import textgame from "@/public/images/texgame.png";
 import SafaryFront from "@/public/images/safary.png";
-import Swagger from "@/public/images/Swagger.png";
-
-
-import wordanalyticsImg from "@/public/wordanalytics.png";
+import Swagger from "@/public/images/swagger.png";
 
 export const links = [
   {
@@ -60,7 +56,7 @@ export const projectsData = [
     description:
       "Developed a student grade CRUD operation MVC project. Implemented dependency injection for efficient component management. Currently enhancing the frontend.",
     tags: [".Net Core MVC", "Next.js", "SQL", "Tailwind", "Bootstrap"],
-    imageUrl: corpcommentImg,
+    imageUrl: TaskEvaluation,
   },
   
   {
@@ -68,7 +64,7 @@ export const projectsData = [
     description:
       "Crafted an engaging Typing Speed Test Game using HTML, CSS, and JavaScript, offering users an interactive platform to enhance their typing skills. The project features a sleek design, user-friendly interface, and real-time performance tracking, providing an immersive and educational experience for users and potential contributors alike.",
     tags: ["Javascript", "Bootstrap5", "Css", "HTML5"],
-    imageUrl: texgame,
+    imageUrl: textgame,
   },
   {
     title: "Safary Backend",
