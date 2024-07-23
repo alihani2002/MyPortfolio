@@ -1,10 +1,10 @@
 import React from "react";
 import { CgWorkAlt } from "react-icons/cg";
 import { LuGraduationCap } from "react-icons/lu";
-import TaskEvaluation from 'public/images/taskevaluation.png';
-import textgame from 'public/images/texgame.png';
-import SafaryFront from 'public/images/safary.png';
-import Swagger from 'public/images/swagger.png';
+import TaskEvaluation from '@/public/taskevaluation.jpeg';
+import textgame from '@/public/texgame.jpeg';
+import SafaryFront from '@/public/safary.jpeg';
+import Swagger from '@/public/swagger.jpeg';
 export const links = [
   {
     name: "Home",
