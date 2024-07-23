@@ -5,7 +5,6 @@ import TaskEvaluation from 'public/images/taskevaluation.png';
 import textgame from 'public/images/texgame.png';
 import SafaryFront from 'public/images/safary.png';
 import Swagger from 'public/images/swagger.png';
-
 export const links = [
   {
     name: "Home",
@@ -55,7 +54,7 @@ export const projectsData = [
     title: "TasksEvaluation",
     description:
       "Developed a student grade CRUD operation MVC project. Implemented dependency injection for efficient component management. Currently enhancing the frontend.",
-    tags: [".Net Core MVC", "Next.js", "SQL", "Tailwind", "Bootstrap"],
+    tags: [".Net Core MVC", "Next.js", "SQL", "Bootstrap"],
     imageUrl: TaskEvaluation,
   },
   
