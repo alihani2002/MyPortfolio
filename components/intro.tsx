@@ -65,7 +65,7 @@ export default function Intro() {
         <span className="font-bold">full-stack DotNet developer.</span>{" "}
         I enjoy
         building <span className="italic">sites & apps</span>. My focus is{" "}
-        <span className="underline">React (Next.js)</span>.
+        <span className="underline">React (Next.js) and DotNet</span>.
       </motion.h1>
 
       <motion.div
