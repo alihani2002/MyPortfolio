@@ -99,6 +99,4 @@ export const skillsData = [
   "ASP.NET Core MVC ",
   "ASP.NET Core Web API ",
   "SQL Server",
-  "Solid Principles ",
-  "Design Pattern",
 ] as const;
