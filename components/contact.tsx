@@ -83,10 +83,6 @@ const Contact: React.FC = () => {
       
       toast.error(errorMessage);
       
-      // Log additional debugging information
-      console.log('Current form state:', formData);
-      console.log('Error details:', error);
-      console.log('API URL:', 'https://alyhani.tryasp.net/api/ContactMessage');
     }
   };
 
