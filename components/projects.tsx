@@ -5,6 +5,7 @@ import SectionHeading from "./section-heading";
 import Project from "./project";
 import { useSectionInView } from "@/lib/hooks";
 import toast from "react-hot-toast";
+import Spinner from "./spinner";
 
 type ProjectType = {
   id: number;
@@ -56,7 +57,7 @@ export default function Projects() {
       <SectionHeading>My Projects</SectionHeading>
 
       {isLoading ? (
-        <p className="text-center text-gray-400 mt-10">Loading projects...</p>
+        <Spinner />
       ) : projects.length === 0 ? (
         <p className="text-center text-gray-400 mt-10">No projects found.</p>
       ) : (

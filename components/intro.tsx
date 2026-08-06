@@ -10,6 +10,7 @@ import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { Profile } from "@/lib/types";
 import toast from "react-hot-toast";
+import Spinner from "./spinner";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
@@ -44,6 +45,10 @@ export default function Intro() {
       id="home"
       className="mb-28 max-w-[50rem] text-center sm:mb-0 scroll-mt-[100rem]"
     >
+      {isLoading ? (
+        <Spinner className="py-24" />
+      ) : (
+        <>
       <div className="flex items-center justify-center">
         <div className="relative">
     <motion.div
@@ -54,7 +59,7 @@ export default function Intro() {
         duration: 0.2,
       }}
     >
-      {profile?.imageUrl ? (
+      {profile?.imageUrl && (
         <Image
           src={profile.imageUrl}
           alt={`${profile.fullName}'s portrait`}
@@ -64,8 +69,6 @@ export default function Intro() {
           priority={true}
           className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-cover border-[0.35rem] border-white shadow-xl rounded-2xl"
         />
-      ) : (
-        <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 bg-gray-200 animate-pulse rounded-2xl" />
       )}
     </motion.div>
 
@@ -92,12 +95,8 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">
-          Hello, I'm {profile?.fullName || 'loading...'}
-        </span>{" "}
-        I'm a{" "}
-        <span className="font-bold">{profile?.title || 'loading...'}</span>{" "}
-        {profile?.bio || 'loading...'}
+        <span className="font-bold">Hello, I'm {profile?.fullName}</span>{" "}
+        I'm a <span className="font-bold">{profile?.title}</span> {profile?.bio}
       </motion.h1>
 
       <motion.div
@@ -154,6 +153,8 @@ export default function Intro() {
           </a>
         )}
       </motion.div>
+        </>
+      )}
     </section>
   );
 }

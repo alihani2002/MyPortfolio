@@ -13,6 +13,7 @@ import { Education } from "@/lib/types";
 import toast from "react-hot-toast";
 import { CgWorkAlt } from "react-icons/cg";
 import { LuGraduationCap } from "react-icons/lu";
+import Spinner from "./spinner";
 
 export default function Experience() {
   const { ref } = useSectionInView("Experience");
@@ -82,17 +83,8 @@ export default function Experience() {
 
       {/* EDUCATION SECTION */}
       <div className="mt-8 mb-12 w-[min(100%,50rem)] mx-auto">
-        <h3 className="text-2xl font-bold mb-6 text-center"></h3>
-
         {isLoadingEducation ? (
-          <div className="space-y-3">
-            {[...Array(3)].map((_, i) => (
-              <div
-                key={i}
-                className="h-5 w-full bg-gray-200 dark:bg-white/10 animate-pulse rounded-lg"
-              />
-            ))}
-          </div>
+          <Spinner />
         ) : education.length === 0 ? (
           <p className="text-gray-400 text-center">No education data available.</p>
         ) : (
@@ -104,18 +96,18 @@ export default function Experience() {
               >
                 <div className="flex items-start justify-between flex-wrap gap-2">
                   <div className="flex-1 min-w-[250px]">
-                    <h4 className="font-semibold text-lg text-white mb-1">
+                    <h4 className="font-semibold text-lg mb-1">
                       {edu.institution}
                     </h4>
                     {(edu.degree || edu.fieldOfStudy) && (
-                      <p className="text-gray-400 text-sm">
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">
                         {edu.degree}
                         {edu.degree && edu.fieldOfStudy && " — "}
                         {edu.fieldOfStudy}
                       </p>
                     )}
                   </div>
-                  <span className="text-sm text-gray-400 whitespace-nowrap">
+                  <span className="text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap">
                     {formatDate(edu.startDate)} — {formatDate(edu.endDate)}
                   </span>
                 </div>
@@ -125,80 +117,73 @@ export default function Experience() {
         )}
       </div>
 
-      {/* EXPERIENCE TIMELINE
-      <VerticalTimeline lineColor={theme === "light" ? "#d1d5db" : "rgba(255,255,255,0.2)"}>
+      {/* EXPERIENCE TIMELINE */}
+      <div className="w-[min(100%,50rem)] mx-auto">
         {loadingExperiences ? (
-          <p className="text-center text-gray-400">Loading experiences...</p>
+          <Spinner />
         ) : experiences.length === 0 ? (
-          <p className="text-center text-gray-400">No experiences available.</p>
+          <p className="text-gray-400 text-center">No experience data available.</p>
         ) : (
-          experiences.map((item, index) => {
-            const title = item.title || item.position || item.institution || "";
-            const location = item.location || "";
-            const description =
-              item.description || item.summary || item.details || "";
-            const date =
-              item.startDate || item.endDate
-                ? `${formatDate(item.startDate)} — ${formatDate(item.endDate)}`
-                : item.date || "";
+          <VerticalTimeline lineColor={theme === "light" ? "#d1d5db" : "rgba(255,255,255,0.2)"}>
+            {experiences.map((item, index) => {
+              const title = item.title || item.position || item.institution || "";
+              const location = item.location || "";
+              const description =
+                item.description || item.summary || item.details || "";
+              const date =
+                item.startDate || item.endDate
+                  ? `${formatDate(item.startDate)} — ${formatDate(item.endDate)}`
+                  : item.date || "";
 
-            const getIcon = () => {
-              const lower = (item.institution || title).toLowerCase();
-              return lower.includes("university") ||
-                lower.includes("college") ||
-                lower.includes("faculty")
-                ? React.createElement(LuGraduationCap)
-                : React.createElement(CgWorkAlt);
-            };
+              const getIcon = () => {
+                const lower = (item.institution || title).toLowerCase();
+                return lower.includes("university") ||
+                  lower.includes("college") ||
+                  lower.includes("faculty")
+                  ? React.createElement(LuGraduationCap)
+                  : React.createElement(CgWorkAlt);
+              };
 
-            return (
-              // <VerticalTimelineElement
-              //   key={index}
-              //   date={date}
-              //   icon={getIcon()}
-              //   iconStyle={{
-              //     background:
-              //       theme === "light"
-              //         ? "#fff"
-              //         : "rgba(255,255,255,0.1)",
-              //     color: theme === "light" ? "#000" : "#fff",
-              //     boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-              //   }}
-              //   contentStyle={{
-              //     background:
-              //       theme === "light"
-              //         ? "#f9fafb"
-              //         : "rgba(255,255,255,0.05)",
-              //     border: "1px solid rgba(255,255,255,0.1)",
-              //     borderRadius: "1rem",
-              //     boxShadow:
-              //       "0 4px 15px rgba(0,0,0,0.2)",
-              //     padding: "1.5rem 2rem",
-              //     textAlign: "left",
-              //   }}
-              //   contentArrowStyle={{
-              //     borderRight:
-              //       theme === "light"
-              //         ? "0.4rem solid #9ca3af"
-              //         : "0.4rem solid rgba(255,255,255,0.3)",
-              //   }}
-              // >
-              //   <h3 className="font-semibold text-lg text-white mb-1">
-              //     {title}
-              //   </h3>
-              //   {location && (
-              //     <p className="text-sm text-gray-400 mb-2">{location}</p>
-              //   )}
-              //   {description && (
-              //     <p className="text-gray-300 text-sm leading-relaxed">
-              //       {description}
-              //     </p>
-              //   )}
-              // </VerticalTimelineElement>
-            );
-          })
+              return (
+                <VerticalTimelineElement
+                  key={item.id ?? index}
+                  date={date}
+                  icon={getIcon()}
+                  iconStyle={{
+                    background: theme === "light" ? "#fff" : "rgba(255,255,255,0.1)",
+                    color: theme === "light" ? "#000" : "#fff",
+                    boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+                  }}
+                  contentStyle={{
+                    background: theme === "light" ? "#f9fafb" : "rgba(255,255,255,0.05)",
+                    border: "1px solid rgba(0,0,0,0.1)",
+                    borderRadius: "1rem",
+                    boxShadow: "0 4px 15px rgba(0,0,0,0.15)",
+                    padding: "1.5rem 2rem",
+                    textAlign: "left",
+                  }}
+                  contentArrowStyle={{
+                    borderRight:
+                      theme === "light"
+                        ? "0.4rem solid #9ca3af"
+                        : "0.4rem solid rgba(255,255,255,0.3)",
+                  }}
+                >
+                  <h3 className="font-semibold text-lg mb-1">{title}</h3>
+                  {location && (
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{location}</p>
+                  )}
+                  {description && (
+                    <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                      {description}
+                    </p>
+                  )}
+                </VerticalTimelineElement>
+              );
+            })}
+          </VerticalTimeline>
         )}
-      </VerticalTimeline> */}
+      </div>
     </section>
   );
 }
