@@ -25,7 +25,7 @@ export default function Projects() {
     const fetchProjects = async () => {
       setIsLoading(true);
       try {
-        const res = await fetch("https://alyhani.tryasp.net/api/Project", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Project`, {
           cache: "no-store",
         });
 

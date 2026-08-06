@@ -27,7 +27,7 @@ export default function Experience() {
     const fetchEducation = async () => {
       setIsLoadingEducation(true);
       try {
-        const res = await fetch("https://alyhani.tryasp.net/api/Education");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Education`);
         if (!res.ok) throw new Error(`Failed to fetch education: ${res.status}`);
         const data = await res.json();
         const arr = Array.isArray(data) ? data.slice() : [];
@@ -52,7 +52,7 @@ export default function Experience() {
     const fetchExperiences = async () => {
       setLoadingExperiences(true);
       try {
-        const res = await fetch("https://alyhani.tryasp.net/api/Experience");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Experience`);
         if (!res.ok) throw new Error(`Failed to fetch experiences: ${res.status}`);
         const data = await res.json();
         const arr = Array.isArray(data) ? data.slice() : [];

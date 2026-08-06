@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://alyhani.tryasp.net/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://portfolioapialihani.runasp.net/api';
 
 export const apiService = {
   async get(endpoint: string = '') {
@@ -42,8 +42,6 @@ export const apiService = {
   async post(endpoint: string = '', data: any) {
     try {
       const url = `${API_BASE_URL}${endpoint}`;
-      console.log('Sending request to:', url);
-      console.log('Request data:', data);
 
       const response = await fetch(url, {
         method: 'POST',
@@ -56,8 +54,6 @@ export const apiService = {
         body: JSON.stringify(data),
       });
 
-      console.log('Response status:', response.status);
-      
       if (!response.ok) {
         let errorMessage = `HTTP error! status: ${response.status}`;
         try {
@@ -70,9 +66,7 @@ export const apiService = {
         throw new Error(errorMessage);
       }
 
-      const responseData = await response.json();
-      console.log('Response data:', responseData);
-      return responseData;
+      return await response.json();
     } catch (error) {
       if (error instanceof TypeError && error.message === 'Failed to fetch') {
         console.error('Network Error - Could not reach the API:', {

@@ -20,7 +20,7 @@ export default function Intro() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch('https://alyhani.tryasp.net/api/Profile');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/Profile`);
         if (!response.ok) {
           throw new Error('Failed to fetch profile');
         }

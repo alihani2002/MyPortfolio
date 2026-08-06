@@ -29,32 +29,13 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      console.log('Preparing to send message...');
       const contactMessage: ContactMessage = {
         ...formData,
         sentAt: new Date().toISOString()
       };
 
-      // Test API accessibility
-      try {
-        const testResponse = await fetch('https://alyhani.tryasp.net/api/ContactMessage', {
-          method: 'OPTIONS',
-          headers: {
-            'Origin': window.location.origin
-          }
-        });
-        console.log('API accessibility test:', {
-          status: testResponse.status,
-          headers: Object.fromEntries(testResponse.headers.entries())
-        });
-      } catch (e) {
-        console.log('API accessibility test failed:', e);
-      }
+      await postData('/ContactMessage', contactMessage);
 
-      console.log('Sending contact message:', contactMessage);
-      const response = await postData('/ContactMessage', contactMessage);
-      console.log('API Response:', response);
-      
       // Reset form
       setFormData({
         name: '',
@@ -65,11 +46,7 @@ const Contact: React.FC = () => {
       
       toast.success('Message sent successfully!');
     } catch (error) {
-      console.error('Detailed contact form error:', {
-        error,
-        message: error instanceof Error ? error.message : 'Unknown error',
-        formData
-      });
+      console.error('Contact form error:', error instanceof Error ? error.message : 'Unknown error');
 
       let errorMessage = 'Failed to send message. ';
       
